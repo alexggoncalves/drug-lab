@@ -12,6 +12,7 @@ const generate = async (prompt) => {
         const  response = await openaiClient.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: messages,
+            temperature: 1.2, // more random results(less repetition)
         })
         return response.choices[0].message.content;
     }
