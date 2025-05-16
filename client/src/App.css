@@ -1,13 +1,20 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
+  height: 100vh;
   text-align: left;
+  display: flex;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
-.results {
-  white-space: pre-line;
-  outline: 1px solid white;
-  padding: 5px 5px 5px 20px;
+.body-container {
+  height: 100%;
+  margin: 0;
+  width: calc(70% - 100px);
 }
-

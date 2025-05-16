@@ -1,0 +1,127 @@
+.drawer-container {
+    width: 500px;
+    outline: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.drawer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px 10px 20px 20px;
+    overflow: hidden;
+}
+
+.drawer > span {
+    margin-bottom: 10px;
+}
+
+.drawer-scroll-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: 10px;
+}
+
+.drawer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.drawer-item {
+    border: 1px solid black;
+    aspect-ratio: 1 / 1;
+    display: flex;
+}
+
+.drawer-item-color-identifier {
+    width: 15%;
+    margin-right: 10px;
+    background-color: yellow;
+}
+
+.drawer-item-details{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.drawer-item-icons > img {
+    margin-top: 4px;
+    width: 35%;
+    aspect-ratio: 1/1;
+    margin-right: 10px;
+    margin-top: 20%;
+}
+
+.drawer-item-details > span {
+    font-weight: 500;
+    font-size: 0.7em;
+    margin: 2px 20px 10px 0;
+    text-wrap: wrap;
+}
+
+
+
+/* Detail Panel */
+
+.drawer-detail-panel {
+    flex-shrink: 0;
+    overflow-y: visible;
+    max-height: 50vh;
+}
+
+.detail-header {
+    outline: 1px solid black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-header > span {
+    margin-left: 20px;
+}
+
+.detail-header-color-identifier {
+    width: 5%;
+    background-color: yellow;
+    height: 100%;
+}
+
+.detail-header-icons {
+    margin-left: auto;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-header-icons > img {
+    outline: 1px solid black;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.drawer-panel-details {
+    padding: 20px;
+}
+
+.drawer-panel-details > div {
+    margin-bottom: 10px;
+}
+
+.drawer-panel-details > div > span {
+    font-weight: 500;
+    color: #6d6d6d;
+}
+
+.drawer-panel-details > div > p {
+    font-weight: 100;
+    color: black;
+}
+
+
