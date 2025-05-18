@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { MoodContext } from "../../contexts/moodContext";
 
 const MoodDisplay = () => {
-    const moodContext = useContext(MoodContext);
+    const {getMoodByName, currentMood} = useContext(MoodContext);
 
-    const mood = moodContext.getMoodByName(moodContext.currentMood);
+    const mood = getMoodByName(currentMood);
 
     return (
         <div className="mood-display">

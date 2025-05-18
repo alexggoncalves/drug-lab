@@ -11,7 +11,7 @@ const SideBar = () => {
 
     return(
         <div className="side-bar">
-            <div className="logo">LOGO</div>
+            <div className="logo">FEELS</div>
             <div className="side-bar-button-container">
                 <div className="side-bar-button active">
                     

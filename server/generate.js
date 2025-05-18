@@ -1,62 +1,82 @@
-import openaiClient from "./api.js"
+import openaiClient from "./api.js";
 
-
-const step1 = async (prompt) => {
+const step1 = async (emotion, emotionIntensity) => {
     const messages = [
-        { role: "system", content: `You are a fictional medicine generator.`},
-        { role: "user", content: `Generate a medicine with the effect: invisibility.`},
-        { role: "assistant", content: `Name: Invise \n Description: ...\n Dosage: 500mg \n Pharmaceutical Form: Tablet`},
-        { role: "user", content: `Generate a medicine with the effect: ${prompt}.`}
+        {
+            role: "system",
+            content: `You are a fictional emotional medicine generator. Consider the emotion that will be potentiated can come with the modifiers: mildly and very`,
+        },
+        {
+            role: "user",
+            content: `Generate a medicine with the effect of potentiating the following emotion: happiness.`,
+        },
+        {
+            role: "assistant",
+            content: `Name: Alurexa \n Description: Alurexa is formulated to amplify sensations of happiness and emotional well-being, particularly in individuals experiencing mild to moderate anhedonia or mood flatness.`,
+        },
+        {
+            role: "user",
+            content: `Generate a medicine with the effect: ${
+                emotionIntensity + " " + emotion
+            }.`,
+        },
     ];
-    const  response = await openaiClient.chat.completions.create({
+    const response = await openaiClient.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: messages,
         temperature: 1.2, // more random results(less repetition)
-    })
+    });
     return response.choices[0].message.content;
-}
+};
 
-const step2 = async (prompt) => {
+const step2 = async (name, description) => {
     const messages = [
-        { role: "system", content: `You are a pharmaceutical documentation expert.`},
-        { role: "user", content: `Generate the indications, contraindications and side-effects of use for the medicine with the following description: ...`},
-        { role: "assistant", content: `Indications: ... \n Contraindications: ... \n Side-effects: ...`},
-        { role: "user", content: `Generate the indications, contraindications and side-effects of use for the medicine with the following description: ${prompt}.`}
+        {
+            role: "system",
+            content: `You are a pharmaceutical documentation expert.`,
+        },
+        {
+            role: "user",
+            content: `Generate a form and side effects for the medicine with the following name: Alurexa, and description: Alurexa is formulated to amplify sensations of happiness and emotional well-being, particularly in individuals experiencing mild to moderate anhedonia or mood flatness.`,
+        },
+        {
+            role: "assistant",
+            content: `Form: Capsule \n Side effects: Mild euphoria or giggliness `,
+        },
+        {
+            role: "user",
+            content: `Generate a form and side effects for the medicine with the following name: ${name}, , and description: ${description}`,
+        },
     ];
-    const  response = await openaiClient.chat.completions.create({
+    const response = await openaiClient.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: messages,
         temperature: 1.2, // more random results(less repetition)
-    })
+    });
     return response.choices[0].message.content;
-}
+};
 
-const step3 = async (result1,result2) => {
-    const messages = [
-        { role: "system", content: `You are a pharmaceutical documentation expert.`},
-        // { role: "user", content: `Generate the visual description of the package`},
-        // { role: "assistant", content: `Indications: ... \n Contraindications: ... \n Side-effects: ...`},
-        { role: "user", content: `Generate the visual description of the package with the following information: ${result1}; ${result2}.`}
-    ];
-    const  response = await openaiClient.chat.completions.create({
-        model: "gpt-3.5-turbo",
-        messages: messages,
-        temperature: 1.2, // more random results(less repetition)
-    })
-    return response.choices[0].message.content;
-}
+const generateMedicine = async (emotion, emotionIntensity) => {
+    const nameAndDescription = await step1(emotion, emotionIntensity);
 
-const generate = async (prompt) => {
+    const nameMatch = nameAndDescription.match(/Name:\s*(.*?)\s*Description:/);
+    const descriptionMatch = nameAndDescription.match(/Description:\s*(.*)/);
+    const name = nameMatch ? nameMatch[1] : "";
+    const description = descriptionMatch ? descriptionMatch[1] : "";
 
-    const result1 = await step1(prompt);
-    const result2 = await step2(result1);
-    const result3 = await step3(result1,result2);
-   
+    const formAndSideEffects = await step2(name, description);
+
+    const formMatch = formAndSideEffects.match(/Form:\s*(.*?)\s*Side effects:/);
+    const sideEffectsMatch = formAndSideEffects.match(/Side effects:\s*(.*)/);
+    const form = formMatch ? formMatch[1] : "";
+    const sideEffects = sideEffectsMatch ? sideEffectsMatch[1] : "";
+    
     return {
-        result1: result1,
-        result2: result2,
-        result3: result3,
-    }
-}
+        name: name,
+        description: description,
+        form: form,
+        sideEffects: sideEffects
+    };
+};
 
-export default generate;
+export default generateMedicine;

@@ -5,19 +5,23 @@ import Body from "./components/Body";
 import Drawer from "./components/Drawer/Drawer";
 
 import MoodProvider from "./contexts/moodContext";
-import MedicineProvider from "./contexts/MedicineContext";
+import DrawerProvider from "./contexts/DrawerContext";
 import ChatProvider from "./contexts/ChatContext";
+
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
     return (
+        
         <MoodProvider>
-            <MedicineProvider>
+            <DrawerProvider>
                 <ChatProvider>
+                    
                     <SideBar />
                     <Body />
                     <Drawer />
                 </ChatProvider>
-            </MedicineProvider>
+            </DrawerProvider>
         </MoodProvider>
     );
 }

@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { ChatContext } from "../../contexts/ChatContext";
 import EmotionWheel from "./EmotionWheel";
+import MedicineResult from "./MedicineResult";
 
 const ChatSection = ({ section, sectionIndex }) => {
     const { handleReadyChoice } = useContext(ChatContext);
@@ -10,7 +11,8 @@ const ChatSection = ({ section, sectionIndex }) => {
         <div className="chat-section" key={`section-${sectionIndex}`}>
             {section.map((message, messageIndex) => {
                 if (message.sender == "bot") {
-                    return (
+                    if(message.type == "default"){
+                       return (
                         <div
                             key={`bot-${messageIndex}`}
                             className="message"
@@ -19,7 +21,20 @@ const ChatSection = ({ section, sectionIndex }) => {
                                 <p key={`line-${i}`}>{line}</p>
                             ))}
                         </div>
-                    );
+                    ); 
+                    } else if (message.type == "medicine-result"){
+                        return <MedicineResult
+                            name={message.name}
+                            effect={message.effect}
+                            form={message.form}
+                            sideEffects={message.sideEffects}
+                            description={message.description}
+                            intensity={message.intensity}
+                        ></MedicineResult>
+
+                        
+                    }
+                    
                 }
 
                 if (message.sender == "user") {
@@ -45,7 +60,7 @@ const ChatSection = ({ section, sectionIndex }) => {
                                 <EmotionWheel></EmotionWheel>
                             </div>
                         );
-                    }
+                    } 
                 }
 
                 return null;

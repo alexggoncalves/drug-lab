@@ -30,7 +30,7 @@ const MoodProvider = ({children}) =>{
                 setMoodIntensity,
                 moods,
                 getMoodByName,
-                getMoodByAngleAndRadius
+                getMoodByAngleAndRadius,
             }}
         >
             {children}

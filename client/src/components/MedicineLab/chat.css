@@ -15,3 +15,7 @@
 .message {
     padding: 10px 0;
 }
+
+.medicine-result-container{
+  border: 1px solid black;
+}

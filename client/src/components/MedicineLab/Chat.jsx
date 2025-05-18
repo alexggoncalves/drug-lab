@@ -5,6 +5,8 @@ import { useContext, useRef, useEffect } from "react";
 import ChatSection from "./ChatSection";
 import { ChatContext } from "../../contexts/ChatContext";
 
+
+
 const Chat = () => {
     const { chatHistory } = useContext(ChatContext);
     const chatRef = useRef(null);

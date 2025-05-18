@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import generate from "./generate.js";
+import generateMedicine from "./generate.js";
 
 const app = express();
 
@@ -14,9 +14,10 @@ app.get("/", (req, res) => {
 })
 
 app.post("/generate", async (req, res)=>{
-    const prompt = req.body.prompt;
+    const emotion = req.body.emotion;
+    const emotionIntensity = req.body.emotionIntensity
     try{
-        const medicine = await generate(prompt);
+        const medicine = await generateMedicine(emotion,emotionIntensity);
         res.json({response: medicine})
     } catch (error){
         console.error(error);

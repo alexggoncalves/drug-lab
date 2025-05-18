@@ -10,11 +10,11 @@
 }
 
 .logo{
-    outline: 1px solid black;
     width: 120px;
     height: 60px;
     text-align: center;
-    
+    font-weight: 700;
+    font-size: 40px;
 }
 
 .side-bar-button-container {

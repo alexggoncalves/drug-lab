@@ -20,7 +20,7 @@ const emotions = [
 
 const EmotionWheel = () => {
     const { getMoodByAngleAndRadius, getMoodByName } = useContext(MoodContext);
-    const { handleEmotionChoice, setSelectedEmotion } = useContext(ChatContext)
+    const { handleEmotionChoice, setSelectedEmotion, setSelectedEmotionIntensity } = useContext(ChatContext)
 
     const canvasRef = useRef(null);
     const [selection, setSelection] = useState({ x: 0, y: 0 });
@@ -178,6 +178,8 @@ const EmotionWheel = () => {
                 setEmotionIntensity("");
             } else setEmotionIntensity("Very");
         } else setEmotionIntensity("");
+
+        setSelectedEmotionIntensity(emotionIntensity);
     };
 
     useEffect(() => {
@@ -206,7 +208,7 @@ const EmotionWheel = () => {
             <button
                 onClick={handleEmotionChoice}
             >
-                Generate
+                GENERATE
             </button>
         </div>
     );
