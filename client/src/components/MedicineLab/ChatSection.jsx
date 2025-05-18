@@ -1,40 +1,19 @@
-import Message from "./Message";
+import { useContext } from "react";
 
-const ChatSection = ({section,sectionIndex}) => {
+import { ChatContext } from "../../contexts/ChatContext";
+import EmotionWheel from "./EmotionWheel";
 
-    const handleChoice = (event) => {
-        const choice = event.target.innerHTML;
+const ChatSection = ({ section, sectionIndex }) => {
+    const { handleReadyChoice } = useContext(ChatContext);
 
-        if (choice === "yes") {
-            setChatHistory((prev) => [
-                ...prev,
-                [{
-                    sender: "bot",
-                    text: "Select an emotion from the wheel:",
-                },
-                {
-                    sender: "user",
-                    type: "emotion-wheel",
-                }],
-            ]);
-
-            
-        }
-        
-    };
-    
     return (
-        <div key={`section-${sectionIndex}`}>
+        <div className="chat-section" key={`section-${sectionIndex}`}>
             {section.map((message, messageIndex) => {
-                <Message
-                    
-                />
-
                 if (message.sender == "bot") {
                     return (
                         <div
                             key={`bot-${messageIndex}`}
-                            className="bot-message"
+                            className="message"
                         >
                             {message.text.split("\n").map((line, i) => (
                                 <p key={`line-${i}`}>{line}</p>
@@ -44,21 +23,29 @@ const ChatSection = ({section,sectionIndex}) => {
                 }
 
                 if (message.sender == "user") {
-                    return (
-                        <div
-                            key={`choices-${messageIndex}`}
-                            className="user-choices"
-                        >
-                            {message.choices.map((choice, choiceIndex) => (
-                                <button
-                                    key={`choice-${choiceIndex}`}
-                                    onClick={handleChoice}
-                                >
-                                    {choice}
-                                </button>
-                            ))}
-                        </div>
-                    );
+                    if (message.type === "ready-choice") {
+                        return (
+                            <div
+                                key={`choices-${messageIndex}`}
+                                className="user-choices"
+                            >
+                                {message.choices.map((choice, choiceIndex) => (
+                                    <button
+                                        key={`choice-${choiceIndex}`}
+                                        onClick={handleReadyChoice}
+                                    >
+                                        {choice}
+                                    </button>
+                                ))}
+                            </div>
+                        );
+                    } else if (message.type === "emotion-wheel") {
+                        return (
+                            <div>
+                                <EmotionWheel></EmotionWheel>
+                            </div>
+                        );
+                    }
                 }
 
                 return null;
@@ -67,4 +54,4 @@ const ChatSection = ({section,sectionIndex}) => {
     );
 };
 
-export default ChatSection
+export default ChatSection;

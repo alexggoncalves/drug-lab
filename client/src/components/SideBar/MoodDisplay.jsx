@@ -4,14 +4,14 @@ import { MoodContext } from "../../contexts/moodContext";
 const MoodDisplay = () => {
     const moodContext = useContext(MoodContext);
 
-    const mood = moodContext.getMoodByEmotion(moodContext.currentMood);
+    const mood = moodContext.getMoodByName(moodContext.currentMood);
 
     return (
         <div className="mood-display">
             <span>CURRENT MOOD:</span>
             <img src={mood.icon} alt="" />
             <div className="current-mood" style={{ background: mood.color }}>
-                <span>{mood.emotion}</span>
+                <span>{mood.name}</span>
             </div>
         </div>
     );

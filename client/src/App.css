@@ -17,4 +17,18 @@
   height: 100%;
   margin: 0;
   width: calc(70% - 100px);
+  flex: 1;
+  position: relative;
+}
+
+.page-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg) translate(-100%, 0);
+  transform-origin: top left;
+  font-weight: 700;
+  font-size: 3em;
+  white-space: nowrap;
+  margin-top: 18px;
 }

@@ -5,11 +5,11 @@ import moods from "./moods"
 export const MoodContext = createContext(null)
 
 const MoodProvider = ({children}) =>{
-    const [currentMood,setCurrentMood] = useState("Neutral");
+    const [currentMood,setCurrentMood] = useState("Angry");
     const [moodIntensity,setMoodIntensity] = useState("");
 
-    const getMoodByEmotion = (emotion) => {
-        return moods.find((mood) => mood.emotion == emotion)
+    const getMoodByName = (name) => {
+        return moods.find((mood) => mood.name == name)
     }
 
     const getMoodByAngleAndRadius = (angle,radius) => {
@@ -29,7 +29,7 @@ const MoodProvider = ({children}) =>{
                 moodIntensity,
                 setMoodIntensity,
                 moods,
-                getMoodByEmotion,
+                getMoodByName,
                 getMoodByAngleAndRadius
             }}
         >

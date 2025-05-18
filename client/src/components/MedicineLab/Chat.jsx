@@ -1,46 +1,22 @@
-import { useState } from "react";
+import "./chat.css";
+
+import { useContext, useRef, useEffect } from "react";
 
 import ChatSection from "./ChatSection";
-
-const initialBotMessage = [
-    {
-        sender: "bot",
-        text: "Welcome to the Medicine Lab!\nHere, you can craft emotional medicines to amplify any feeling you choose.",
-    },
-    {
-        sender: "bot",
-        text: "Are you ready to start?",
-    },
-    {
-        sender: "user",
-        type: "choice",
-        choices: ["yes", "no"],
-    },
-];
-
-const emotionChoice = [
-    {
-        sender: "bot",
-        text: "Take a look at the emotion wheel below.Which emotion would you like your new medicine to amplify?",
-    },
-    {
-        sender: "bot",
-        text: "Please select an emotion from the wheel to continue.",
-    },
-    {
-        sender: "user",
-        type: "emotion-wheel",
-    },
-];
+import { ChatContext } from "../../contexts/ChatContext";
 
 const Chat = () => {
-    const [step, setStep] = useState("q1");
-    const [chatHistory, setChatHistory] = useState([initialBotMessage]);
+    const { chatHistory } = useContext(ChatContext);
+    const chatRef = useRef(null);
 
-    
+    useEffect(() => {
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+    }, [chatHistory]);
 
     return (
-        <div className="chat-container">
+        <div className="chat-container" ref={chatRef}>
             {chatHistory.map((section, sectionIndex) => (
                 <ChatSection section={section} sectionIndex={sectionIndex} />
             ))}
