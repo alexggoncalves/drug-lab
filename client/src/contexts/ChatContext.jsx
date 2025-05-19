@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { MoodContext } from "./moodContext";
 
 export const ChatContext = createContext(null);
 
@@ -37,6 +38,32 @@ const emotionChoice = [
     },
 ];
 
+const newReadyChoice = [
+    {
+        sender: "bot",
+        type: "default",
+        text: "How about now? Ready?",
+    },
+    {
+        sender: "user",
+        type: "ready-choice",
+        choices: ["YES", "NO"],
+    },
+];
+
+const newGeneration = [
+    {
+        sender: "bot",
+        type: "default",
+        text: "Do you wish to generate a new medicine?",
+    },
+    {
+        sender: "user",
+        type: "ready-choice",
+        choices: ["YES", "NO"],
+    },
+];
+
 class ResultMessage {
     constructor(name, effect, form, sideEffects, description, intensity) {
         this.sender = "bot";
@@ -50,16 +77,28 @@ class ResultMessage {
     }
 }
 
+const loadingMessage = {
+    sender: "bot",
+    type: "default",
+    text: "Generating your new medicine...",
+};
+
 const ChatProvider = ({ children }) => {
+    const {getMoodByName} = useContext(MoodContext)
+
+    const neutralMood = getMoodByName("Neutral")
+
     const [chatHistory, setChatHistory] = useState([initialBotMessage]);
-    const [selectedEmotion, setSelectedEmotion] = useState();
-    const [selectedEmotionIntensity, setSelectedEmotionIntensity] = useState();
+    const [selectedEmotion, setSelectedEmotion] = useState(neutralMood);
+    const [selectedEmotionIntensity, setSelectedEmotionIntensity] = useState(2);
 
     const handleReadyChoice = (event) => {
         const choice = event.target.innerHTML;
 
         if (choice === "YES") {
             setChatHistory((prev) => [...prev, emotionChoice]);
+        } else if (choice === "NO"){
+            setChatHistory((prev) => [...prev, newReadyChoice])
         }
     };
 
@@ -82,6 +121,8 @@ const ChatProvider = ({ children }) => {
     };
 
     const handleEmotionChoice = async () => {
+        setChatHistory((prev) => [...prev, [loadingMessage]]);
+
         const result = await generateMedicine();
 
         const newResultMessage = new ResultMessage(
@@ -94,6 +135,8 @@ const ChatProvider = ({ children }) => {
         );
 
         setChatHistory((prev) => [...prev, [newResultMessage]]);
+        setChatHistory((prev) => [...prev, newGeneration]);
+        
     };
 
     return (

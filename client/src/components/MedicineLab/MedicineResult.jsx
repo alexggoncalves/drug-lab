@@ -1,42 +1,55 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MoodContext } from "../../contexts/moodContext";
 import Intensity from "../IntensityIndicators/Intensity";
 import { DrawerContext } from "../../contexts/DrawerContext";
 
-const MedicineResult = ({ name, effect, form, sideEffects, description , intensity}) => {
-    const {getMoodByName, currentMood} = useContext(MoodContext);
-    const {addMedicineToDrawer} = useContext(DrawerContext)
+const MedicineResult = ({
+    name,
+    effect,
+    form,
+    sideEffects,
+    description,
+    intensity,
+}) => {
+    const { getMoodByName, currentMood } = useContext(MoodContext);
+    const { addMedicineToDrawer } = useContext(DrawerContext);
+
+    const [disabled, setDisabled] = useState(false);
 
     let intensityValue = 0;
 
-    if(intensity == "Very"){
+    if (intensity == "Very") {
         intensityValue = 3;
-    } else if(intensity == "Mildly"){
+    } else if (intensity == "Mildly") {
         intensityValue = 1;
-    } else intensityValue = 2
+    } else intensityValue = 2;
 
     const mood = getMoodByName(effect);
 
     const addToDrawer = () => {
-        const  medicine = {
-            name:name,
+        const medicine = {
+            name: name,
             effect: effect,
             form: form,
             sideEffects: sideEffects,
             description: description,
             intensity: intensityValue,
             icon: mood.icon,
-            color: mood.color
-        }
+            color: mood.color,
+        };
 
         addMedicineToDrawer(medicine);
-    }
-    
+        setDisabled(true);
+    };
+
     return (
         <div className="medicine-result-container">
             <div className="drawer-detail-panel">
                 <div className="detail-header">
-                    <div className="detail-header-color-identifier" style={{background:mood.color}}/>
+                    <div
+                        className="detail-header-color-identifier"
+                        style={{ background: mood.color }}
+                    />
                     <span>{name}</span>
                     <div className="detail-header-icons">
                         <img src={mood.icon} alt="" />
@@ -63,7 +76,9 @@ const MedicineResult = ({ name, effect, form, sideEffects, description , intensi
                         <span>DESCRIPTION</span>
                         <p>{description}</p>
                     </div>
-                    <button onClick={addToDrawer}>ADD TO DRAWER</button>
+                    <button onClick={addToDrawer} disabled={disabled}>
+                        {disabled ? "ADDED TO DRAWER" : "ADD TO DRAWER"}
+                    </button>
                 </div>
             </div>
         </div>

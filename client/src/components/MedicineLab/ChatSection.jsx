@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { ChatContext } from "../../contexts/ChatContext";
 import EmotionWheel from "./EmotionWheel";
@@ -6,6 +6,12 @@ import MedicineResult from "./MedicineResult";
 
 const ChatSection = ({ section, sectionIndex }) => {
     const { handleReadyChoice } = useContext(ChatContext);
+    const [disabled, setDisabled] = useState(false);
+
+    const handleChoice = (e) =>{
+        setDisabled(true);
+        handleReadyChoice(e);
+    }
 
     return (
         <div className="chat-section" key={`section-${sectionIndex}`}>
@@ -31,8 +37,6 @@ const ChatSection = ({ section, sectionIndex }) => {
                             description={message.description}
                             intensity={message.intensity}
                         ></MedicineResult>
-
-                        
                     }
                     
                 }
@@ -47,7 +51,8 @@ const ChatSection = ({ section, sectionIndex }) => {
                                 {message.choices.map((choice, choiceIndex) => (
                                     <button
                                         key={`choice-${choiceIndex}`}
-                                        onClick={handleReadyChoice}
+                                        onClick={handleChoice}
+                                        disabled={disabled}
                                     >
                                         {choice}
                                     </button>

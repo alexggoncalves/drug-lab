@@ -20,16 +20,23 @@ const emotions = [
 
 const EmotionWheel = () => {
     const { getMoodByAngleAndRadius, getMoodByName } = useContext(MoodContext);
-    const { handleEmotionChoice, setSelectedEmotion, setSelectedEmotionIntensity } = useContext(ChatContext)
+    const {
+        handleEmotionChoice,
+        setSelectedEmotion,
+        setSelectedEmotionIntensity,
+    } = useContext(ChatContext);
 
     const canvasRef = useRef(null);
+
     const [selection, setSelection] = useState({ x: 0, y: 0 });
     const [isDragging, setIsDragging] = useState(false);
     const [emotion, setEmotion] = useState(getMoodByName("Neutral"));
     const [emotionIntensity, setEmotionIntensity] = useState("");
+    const [disabled, setDisabled] = useState(false);
 
     const padding = 10;
     const separationLinesLength = 10;
+
 
     const drawWheel = (ctx, width, height) => {
         const center = { x: width / 2, y: height / 2 };
@@ -144,42 +151,45 @@ const EmotionWheel = () => {
     };
 
     const handleDrag = (e) => {
-        const canvas = canvasRef.current;
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        if (!disabled) {
+            const canvas = canvasRef.current;
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-        const center = { x: canvas.width / 2, y: canvas.height / 2 };
+            const center = { x: canvas.width / 2, y: canvas.height / 2 };
 
-        const dx = x - center.x;
-        const dy = y - center.y;
-        const radius = Math.sqrt(dx * dx + dy * dy);
+            const dx = x - center.x;
+            const dy = y - center.y;
+            const radius = Math.sqrt(dx * dx + dy * dy);
 
-        const wheelRadius = canvas.width / 2 - padding * 2;
+            const wheelRadius = canvas.width / 2 - padding * 2;
 
-        const angleRad = (Math.atan2(-dy, dx) + 2 * Math.PI) % (2 * Math.PI);
-        const angleDeg = (angleRad * 180) / Math.PI;
+            const angleRad =
+                (Math.atan2(-dy, dx) + 2 * Math.PI) % (2 * Math.PI);
+            const angleDeg = (angleRad * 180) / Math.PI;
 
-        // Prevent dragging outside of the wheel
-        if (radius > wheelRadius) return;
+            // Prevent dragging outside of the wheel
+            if (radius > wheelRadius) return;
 
-        const normalizedRadius = radius / wheelRadius;
+            const normalizedRadius = radius / wheelRadius;
 
-        setSelection({ x: dx, y: dy });
+            setSelection({ x: dx, y: dy });
 
-        const emotion = getMoodByAngleAndRadius(angleDeg, normalizedRadius);
-        setEmotion(emotion);
-        setSelectedEmotion(emotion);
+            const emotion = getMoodByAngleAndRadius(angleDeg, normalizedRadius);
+            setEmotion(emotion);
+            setSelectedEmotion(emotion);
 
-        if (emotion.name != "Neutral") {
-            if (normalizedRadius <= 0.2 + 0.8 / 3) {
-                setEmotionIntensity("Mildly");
-            } else if (normalizedRadius <= 0.2 + 1.6 / 3) {
-                setEmotionIntensity("");
-            } else setEmotionIntensity("Very");
-        } else setEmotionIntensity("");
+            if (emotion.name != "Neutral") {
+                if (normalizedRadius <= 0.2 + 0.8 / 3) {
+                    setEmotionIntensity("Mildly");
+                } else if (normalizedRadius <= 0.2 + 1.6 / 3) {
+                    setEmotionIntensity("");
+                } else setEmotionIntensity("Very");
+            } else setEmotionIntensity("");
 
-        setSelectedEmotionIntensity(emotionIntensity);
+            setSelectedEmotionIntensity(emotionIntensity);
+        }
     };
 
     useEffect(() => {
@@ -187,6 +197,11 @@ const EmotionWheel = () => {
         const ctx = canvas.getContext("2d");
         drawWheel(ctx, canvas.width, canvas.height);
     }, [selection]);
+
+    const chooseEmotion = () => {
+        handleEmotionChoice();
+        setDisabled(true);
+    };
 
     return (
         <div className="emotion-wheel-container">
@@ -205,9 +220,7 @@ const EmotionWheel = () => {
                     {emotionIntensity} {emotion.name}
                 </span>
             </div>
-            <button
-                onClick={handleEmotionChoice}
-            >
+            <button onClick={chooseEmotion} disabled={disabled}>
                 GENERATE
             </button>
         </div>

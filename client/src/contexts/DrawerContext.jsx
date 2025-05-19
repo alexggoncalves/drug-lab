@@ -4,6 +4,7 @@ export const DrawerContext = createContext(null)
 
 const DrawerProvider = ({children}) =>{
     const [drawer,setDrawer] = useState([]);
+    const [selectedMedicine, setSelectedMedicine] = useState(null)
 
     const addMedicineToDrawer = (medicine) =>{
         setDrawer((prev) => [...prev, medicine]);
@@ -14,7 +15,9 @@ const DrawerProvider = ({children}) =>{
             value={{
                 drawer,
                 setDrawer,
-                addMedicineToDrawer
+                addMedicineToDrawer,
+                setSelectedMedicine,
+                selectedMedicine
             }}
         >
             {children}

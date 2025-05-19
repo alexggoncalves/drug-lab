@@ -6,6 +6,7 @@ const Body = () =>{
 
     return (
         <div className="body-container">
+            
             <MedicineLab></MedicineLab>
         </div>
     )

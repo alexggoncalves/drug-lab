@@ -5,8 +5,8 @@ import moods from "./moods"
 export const MoodContext = createContext(null)
 
 const MoodProvider = ({children}) =>{
-    const [currentMood,setCurrentMood] = useState("Angry");
-    const [moodIntensity,setMoodIntensity] = useState("");
+    const [ currentMood,setCurrentMood ] = useState("Neutral");
+    const [ moodIntensity,setMoodIntensity ] = useState("");
 
     const getMoodByName = (name) => {
         return moods.find((mood) => mood.name == name)
@@ -21,6 +21,10 @@ const MoodProvider = ({children}) =>{
         )
     }
 
+    const getCurrentMood = ()=>{
+        const mood = moodIntensity + currentMood;
+    }
+
     return(
         <MoodContext.Provider
             value={{
@@ -31,6 +35,7 @@ const MoodProvider = ({children}) =>{
                 moods,
                 getMoodByName,
                 getMoodByAngleAndRadius,
+                getCurrentMood
             }}
         >
             {children}

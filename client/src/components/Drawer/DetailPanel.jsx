@@ -1,38 +1,63 @@
-const DetailPanel = () =>{
-    return (
-        <div className="drawer-detail-panel">
-            <div className="detail-header">
-                <div className="detail-header-color-identifier"/>
-                <span>NAME</span>
-                <div className="detail-header-icons">
-                    <img src={null} alt="" />
-                    <img src={null} alt="" />
-                </div>
-               
-            </div>
-            <div className="drawer-panel-details">
-                <div className="drawer-panel-details-item">
-                    <span>EFFECT</span>
-                    <p>Happiness</p>
-                </div>
-                <div className="drawer-panel-details-item">
-                    <span>FORM</span>
-                    <p>Pills</p>
-                </div>
-                <div className="drawer-panel-details-item">
-                    <span>SIDE EFFECTS</span>
-                    <p>Uncontrollable giggling</p>
-                </div>
-                <div className="drawer-panel-details-item">
-                    <span>DESCRIPTION</span>
-                    <p>A sparkling potion that amplifies happiness and lightness of heart.</p>
-                </div>
+import { useContext, useEffect, useState } from "react";
+import { DrawerContext } from "../../contexts/DrawerContext";
 
-                <button>TAKE</button>
-                
-            </div>
-        </div>
-    )
-}
+import Intensity from "../IntensityIndicators/Intensity";
+import { MoodContext } from "../../contexts/moodContext";
 
-export default DetailPanel
+const DetailPanel = () => {
+    const { selectedMedicine } = useContext(DrawerContext);
+    const { setCurrentMood, setMoodIntensity } = useContext(MoodContext);
+
+    const takeMedicine = () => {
+        setCurrentMood(selectedMedicine.effect)
+        
+        if(selectedMedicine.intensity == 1){
+            setMoodIntensity("Mildly");
+        } else if (selectedMedicine.intensity == 3){
+            setMoodIntensity("Very");
+        } else setMoodIntensity("");
+        
+    }
+
+    if (selectedMedicine != null) {
+        return (
+            <div className="drawer-detail-panel">
+                <div className="detail-header">
+                    <div className="detail-header-color-identifier" style={{background:selectedMedicine.color}}/>
+                    <span>{selectedMedicine.name}</span>
+                    <div className="detail-header-icons">
+                        <img src={selectedMedicine.icon} alt="" />
+                        <Intensity
+                            intensity={selectedMedicine.intensity}
+                            color={selectedMedicine.color}
+                        />
+                    </div>
+                </div>
+                <div className="drawer-panel-details">
+                    <div className="drawer-panel-details-item">
+                        <span>EFFECT</span>
+                        <p>{selectedMedicine.effect}</p>
+                    </div>
+                    <div className="drawer-panel-details-item">
+                        <span>FORM</span>
+                        <p>{selectedMedicine.form}</p>
+                    </div>
+                    <div className="drawer-panel-details-item">
+                        <span>SIDE EFFECTS</span>
+                        <p>{selectedMedicine.sideEffects}</p>
+                    </div>
+                    <div className="drawer-panel-details-item">
+                        <span>DESCRIPTION</span>
+                        <p>
+                            {selectedMedicine.description}
+                        </p>
+                    </div>
+
+                    <button onClick={takeMedicine}>TAKE</button>
+                </div>
+            </div>
+        );
+    } else return null;
+};
+
+export default DetailPanel;

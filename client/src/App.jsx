@@ -8,15 +8,13 @@ import MoodProvider from "./contexts/moodContext";
 import DrawerProvider from "./contexts/DrawerContext";
 import ChatProvider from "./contexts/ChatContext";
 
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
     return (
-        
         <MoodProvider>
             <DrawerProvider>
                 <ChatProvider>
-                    
                     <SideBar />
                     <Body />
                     <Drawer />
