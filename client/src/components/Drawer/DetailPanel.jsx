@@ -9,21 +9,23 @@ const DetailPanel = () => {
     const { setCurrentMood, setMoodIntensity } = useContext(MoodContext);
 
     const takeMedicine = () => {
-        setCurrentMood(selectedMedicine.effect)
-        
-        if(selectedMedicine.intensity == 1){
+        setCurrentMood(selectedMedicine.mood);
+
+        if (selectedMedicine.intensity == 1) {
             setMoodIntensity("Mildly");
-        } else if (selectedMedicine.intensity == 3){
+        } else if (selectedMedicine.intensity == 3) {
             setMoodIntensity("Very");
         } else setMoodIntensity("");
-        
-    }
+    };
 
     if (selectedMedicine != null) {
         return (
             <div className="drawer-detail-panel">
                 <div className="detail-header">
-                    <div className="detail-header-color-identifier" style={{background:selectedMedicine.color}}/>
+                    <div
+                        className="detail-header-color-identifier"
+                        style={{ background: selectedMedicine.color }}
+                    />
                     <span>{selectedMedicine.name}</span>
                     <div className="detail-header-icons">
                         <img src={selectedMedicine.icon} alt="" />
@@ -48,12 +50,9 @@ const DetailPanel = () => {
                     </div>
                     <div className="drawer-panel-details-item">
                         <span>DESCRIPTION</span>
-                        <p>
-                            {selectedMedicine.description}
-                        </p>
+                        <p>{selectedMedicine.description}</p>
                     </div>
-
-                    <button onClick={takeMedicine}>TAKE</button>
+                    <button onClick={takeMedicine}>TAKE MEDICINE</button>
                 </div>
             </div>
         );

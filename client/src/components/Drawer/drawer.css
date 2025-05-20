@@ -37,10 +37,12 @@
     aspect-ratio: 1 / 1;
     display: flex;
     cursor: pointer;
+    
 }
 
 .drawer-item-color-identifier {
     width: 20px;
+    
 }
 
 .drawer-item-details{
@@ -70,6 +72,9 @@
     font-weight: 500;
     font-size: 0.7em;
     text-wrap: wrap;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 
@@ -79,7 +84,9 @@
 .drawer-detail-panel {
     flex-shrink: 0;
     overflow-y: visible;
-    
+    max-height: 60%;
+    display: flex;
+    flex-direction: column;
 }
 
 .detail-header {
@@ -120,6 +127,9 @@
 
 .drawer-panel-details {
     padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    flex-grow: 1;
 }
 
 .drawer-panel-details > div {
@@ -134,6 +144,10 @@
 .drawer-panel-details > div > p {
     font-weight: 100;
     color: black;
+}
+
+.drawer-panel-details > button {
+    margin-bottom: 0;
 }
 
 

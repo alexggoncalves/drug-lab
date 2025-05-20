@@ -60,10 +60,11 @@ const newGeneration = [
 ];
 
 class ResultMessage {
-    constructor(name, effect, form, sideEffects, description, intensity) {
+    constructor(name, emotion, effect, form, sideEffects, description, intensity) {
         this.sender = "bot";
         this.type = "medicine-result";
         this.name = name;
+        this.emotion = emotion;
         this.effect = effect;
         this.form = form;
         this.sideEffects = sideEffects;
@@ -86,6 +87,7 @@ const ChatProvider = ({ children }) => {
     const [chatHistory, setChatHistory] = useState([initialBotMessage]);
     const [selectedEmotion, setSelectedEmotion] = useState(neutralMood);
     const [selectedEmotionIntensity, setSelectedEmotionIntensity] = useState(2);
+    const [typedExtraSymptoms,setTypedExtraSymptoms] = useState("");
 
     const handleReadyChoice = (event) => {
         const choice = event.target.innerHTML;
@@ -98,7 +100,6 @@ const ChatProvider = ({ children }) => {
     };
 
     const generateMedicine = async () => {
-        console.log();
         const response = await fetch("http://localhost:3005/generate", {
             method: "POST",
             headers: {
@@ -107,10 +108,12 @@ const ChatProvider = ({ children }) => {
             body: JSON.stringify({
                 emotion: selectedEmotion.name,
                 emotionIntensity: selectedEmotionIntensity,
+                extraSymptoms: typedExtraSymptoms
             }),
         });
 
         const data = await response.json();
+
 
         return data.response;
     };
@@ -122,7 +125,8 @@ const ChatProvider = ({ children }) => {
 
         const newResultMessage = new ResultMessage(
             result.name,
-            selectedEmotion.name,
+            result.emotion,
+            result.effects,
             result.form,
             result.sideEffects,
             result.description,
@@ -131,7 +135,6 @@ const ChatProvider = ({ children }) => {
 
         setChatHistory((prev) => [...prev, [newResultMessage]]);
         setChatHistory((prev) => [...prev, newGeneration]);
-        
     };
 
     return (
@@ -143,6 +146,7 @@ const ChatProvider = ({ children }) => {
                 handleEmotionChoice,
                 setSelectedEmotion,
                 setSelectedEmotionIntensity,
+                setTypedExtraSymptoms
             }}
         >
             {children}

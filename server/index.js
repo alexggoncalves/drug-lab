@@ -16,8 +16,10 @@ app.get("/", (req, res) => {
 app.post("/generate", async (req, res)=>{
     const emotion = req.body.emotion;
     const emotionIntensity = req.body.emotionIntensity
+    const extraSymptoms = req.body.extraSymptoms
+    
     try{
-        const medicine = await generateMedicine(emotion,emotionIntensity);
+        const medicine = await generateMedicine(emotion,emotionIntensity,extraSymptoms);
         res.json({response: medicine})
     } catch (error){
         console.error(error);

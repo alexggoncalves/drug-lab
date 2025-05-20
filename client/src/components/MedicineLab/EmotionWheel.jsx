@@ -24,6 +24,7 @@ const EmotionWheel = () => {
         handleEmotionChoice,
         setSelectedEmotion,
         setSelectedEmotionIntensity,
+        setTypedExtraSymptoms
     } = useContext(ChatContext);
 
     const canvasRef = useRef(null);
@@ -33,6 +34,7 @@ const EmotionWheel = () => {
     const [emotion, setEmotion] = useState(getMoodByName("Neutral"));
     const [emotionIntensity, setEmotionIntensity] = useState("");
     const [disabled, setDisabled] = useState(false);
+    const [extraSymptons, setExtraSymptoms] = useState("");
 
     const padding = 10;
     const separationLinesLength = 10;
@@ -196,8 +198,9 @@ const EmotionWheel = () => {
         const ctx = canvas.getContext("2d");
         drawWheel(ctx, canvas.width, canvas.height);
         setSelectedEmotion(emotion);
-        setEmotionIntensity(emotionIntensity)
-    }, [selection]);
+        setEmotionIntensity(emotionIntensity);
+        setTypedExtraSymptoms(extraSymptons);
+    }, [selection,extraSymptons]);
 
     const chooseEmotion = () => {
         handleEmotionChoice();
@@ -227,6 +230,22 @@ const EmotionWheel = () => {
                     </span>
                 </div>
             </div>
+            <div className="symptom-input-container">
+                <span>
+                    Any other troubles you’d like this medicine to cure? Type
+                    them in below (or leave it blank).{" "}
+                </span>
+                <div className="symptom-input-box">
+                    <span>{">"}</span>
+                    <input
+                        disabled={disabled}
+                        type="text"
+                        onChange={(e) => {setExtraSymptoms(e.target.value)}}
+                        placeholder="..."
+                    ></input>
+                </div>
+            </div>
+
             <button onClick={chooseEmotion} disabled={disabled}>
                 PRODUCE MEDICINE
             </button>

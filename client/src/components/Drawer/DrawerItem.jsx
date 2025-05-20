@@ -23,7 +23,7 @@ const DrawerItem = ({ medicine }) => {
                         color={medicine.color}
                     />
                 </div>
-                <span style={{ color: medicine.color }}>{medicine.effect}</span>
+                <span style={{ color: medicine.color }}>{medicine.mood}</span>
                 <span>{medicine.name}</span>
             </div>
             <img className="drawer-item-options-button" src={null} alt="" />

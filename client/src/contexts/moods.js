@@ -15,6 +15,7 @@ import contentIcon from "../assets/moods/content.png"
 const moods = [
     {
         name: "Neutral",
+        effect: "Emotional neutrality",
         angleRange: {min:0, max: 360},
         radiusRange: {min:0.0, max: 0.2},
         icon: neutralIcon,
@@ -22,6 +23,7 @@ const moods = [
     },
     {
         name: "Happy",
+        effect: "Happiness",
         angleRange: {min:0, max: 30},
         radiusRange: {min:0.2, max: 1.0},
         icon: happyIcon,
@@ -29,78 +31,89 @@ const moods = [
     },
     {
         name: "Excited",
-        angleRange: {min:30, max: 60},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Excitement",
+        angleRange: { min: 30, max: 60 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: excitedIcon,
         color: "#FF8800"
     },
     {
         name: "Alert",
-        angleRange: {min:60, max: 90},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Alertness",
+        angleRange: { min: 60, max: 90 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: alertIcon,
         color: "#FF2E2E"
     },
     {
         name: "Tense",
-        angleRange: {min:90, max: 120},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Tension",
+        angleRange: { min: 90, max: 120 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: tenseIcon,
         color: "#B83280"
     },
     {
         name: "Angry",
-        angleRange: {min:120, max: 150},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Anger",
+        angleRange: { min: 120, max: 150 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: angryIcon,
         color: "#D7263D"
     },
     {
         name: "Distressed",
-        angleRange: {min:150, max: 180},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Distress",
+        angleRange: { min: 150, max: 180 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: distressedIcon,
         color: "#8F3985"
     },
     {
         name: "Sad",
-        angleRange: {min:180, max: 210},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Sadness",
+        angleRange: { min: 180, max: 210 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: sadIcon,
         color: "#3B5BA5"
     },
     {
         name: "Depressed",
-        angleRange: {min:210, max: 240},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Depression",
+        angleRange: { min: 210, max: 240 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: depressedIcon,
         color: "#5C5470"
     },
     {
         name: "Bored",
-        angleRange: {min:240, max: 270},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Boredom",
+        angleRange: { min: 240, max: 270 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: boredIcon,
         color: "#E2C290"
     },
     {
         name: "Calm",
-        angleRange: {min:270, max: 300},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Calmness",
+        angleRange: { min: 270, max: 300 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: calmIcon,
         color: "#4FC3F7"
     },
     {
         name: "Relaxed",
-        angleRange: {min:300, max: 330},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Relaxation",
+        angleRange: { min: 300, max: 330 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: relaxedIcon,
         color: "#4DE1B3"
     },
     {
         name: "Content",
-        angleRange: {min:330, max: 360},
-        radiusRange: {min:0.2, max: 1.0},
+        effect: "Contentment",
+        angleRange: { min: 330, max: 360 },
+        radiusRange: { min: 0.2, max: 1.0 },
         icon: contentIcon,
         color: "#7ED957"
     }

@@ -5,6 +5,7 @@ import { DrawerContext } from "../../contexts/DrawerContext";
 
 const MedicineResult = ({
     name,
+    emotion,
     effect,
     form,
     sideEffects,
@@ -24,13 +25,14 @@ const MedicineResult = ({
         intensityValue = 1;
     } else intensityValue = 2;
 
-    const mood = getMoodByName(effect);
+    const mood = getMoodByName(emotion);
 
     const addToDrawer = () => {
         const medicine = {
             name: name,
             effect: effect,
             form: form,
+            mood: emotion,
             sideEffects: sideEffects,
             description: description,
             intensity: intensityValue,

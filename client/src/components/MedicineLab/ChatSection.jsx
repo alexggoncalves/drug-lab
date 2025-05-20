@@ -31,6 +31,7 @@ const ChatSection = ({ section, sectionIndex }) => {
                     } else if (message.type == "medicine-result"){
                         return <MedicineResult
                             name={message.name}
+                            emotion={message.emotion}
                             effect={message.effect}
                             form={message.form}
                             sideEffects={message.sideEffects}
