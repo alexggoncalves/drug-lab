@@ -37,7 +37,6 @@ const EmotionWheel = () => {
     const padding = 10;
     const separationLinesLength = 10;
 
-
     const drawWheel = (ctx, width, height) => {
         const center = { x: width / 2, y: height / 2 };
         const radius = width / 2 - padding * 2;
@@ -59,7 +58,7 @@ const EmotionWheel = () => {
         // Draw neutral label
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        ctx.font = "12px Space Grotesk";
+        ctx.font = "13px Space Grotesk";
         ctx.fillStyle = "grey";
         ctx.fillText("Neutral", center.x, center.y);
 
@@ -196,6 +195,8 @@ const EmotionWheel = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
         drawWheel(ctx, canvas.width, canvas.height);
+        setSelectedEmotion(emotion);
+        setEmotionIntensity(emotionIntensity)
     }, [selection]);
 
     const chooseEmotion = () => {
@@ -204,26 +205,32 @@ const EmotionWheel = () => {
     };
 
     return (
-        <div className="emotion-wheel-container">
-            <canvas
-                width="400"
-                height="400"
-                ref={canvasRef}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-            />
-            <div>
-                <span>Selected Emotion: </span>
-                <span>
-                    {emotionIntensity} {emotion.name}
-                </span>
+        <>
+            <div className="emotion-wheel-container">
+                <canvas
+                    width="400"
+                    height="400"
+                    ref={canvasRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                />
+                <div className="emotion-wheel-selected">
+                    <span>SELECTED EMOTION: </span>
+                    <img src={emotion.icon}></img>
+                    <span
+                        className="current-mood"
+                        style={{ background: emotion.color }}
+                    >
+                        {emotionIntensity} {emotion.name}
+                    </span>
+                </div>
             </div>
             <button onClick={chooseEmotion} disabled={disabled}>
-                GENERATE
+                PRODUCE MEDICINE
             </button>
-        </div>
+        </>
     );
 };
 

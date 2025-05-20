@@ -12,13 +12,14 @@
 .logo{
     width: 120px;
     height: 60px;
-    text-align: center;
-    font-weight: 700;
-    font-size: 36px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 44px;
     font-family: 'Margarine', cursive;
     user-select: none;
     -webkit-user-drag: none;
     -moz-user-select: none;
+    line-height: 90%;
 }
 
 .side-bar-button-container {
@@ -36,6 +37,7 @@
     user-select: none;
     -webkit-user-drag: none;
     -moz-user-select: none;
+    cursor: pointer;
 }
 
 .side-bar-button > img {
@@ -54,8 +56,7 @@
 }
 
 .active > img:hover{
-    outline: 1px inset white;
-    filter: invert(1);
+    outline: 1px inset black;
 }
 
 .side-bar-button > span {
@@ -95,7 +96,6 @@
     font-size: 0.8em;
     margin-bottom: 4px;
     font-weight: 500;
-    
 }
 
 .current-mood {

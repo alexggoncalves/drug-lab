@@ -17,7 +17,7 @@ const initialBotMessage = [
     {
         sender: "user",
         type: "ready-choice",
-        choices: ["YES", "NO"],
+        choices: ["YES"],
     },
 ];
 
@@ -25,12 +25,7 @@ const emotionChoice = [
     {
         sender: "bot",
         type: "default",
-        text: "Take a look at the emotion wheel below.Which emotion would you like your new medicine to amplify?",
-    },
-    {
-        sender: "bot",
-        type: "default",
-        text: "Please select an emotion from the wheel to continue.",
+        text: "Please select an emotion from the wheel to produce your medicine.",
     },
     {
         sender: "user",
@@ -47,7 +42,7 @@ const newReadyChoice = [
     {
         sender: "user",
         type: "ready-choice",
-        choices: ["YES", "NO"],
+        choices: ["YES"],
     },
 ];
 
@@ -60,7 +55,7 @@ const newGeneration = [
     {
         sender: "user",
         type: "ready-choice",
-        choices: ["YES", "NO"],
+        choices: ["YES"],
     },
 ];
 
@@ -80,7 +75,7 @@ class ResultMessage {
 const loadingMessage = {
     sender: "bot",
     type: "default",
-    text: "Generating your new medicine...",
+    text: "Please wait while we produce your medicine...",
 };
 
 const ChatProvider = ({ children }) => {

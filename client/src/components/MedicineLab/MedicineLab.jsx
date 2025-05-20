@@ -2,10 +2,10 @@ import Chat from "./Chat";
 
 const MedicineLab = () => {
     return (
-        <>
-            <span className="page-title">MEDICINE LAB</span>
+        <div className="body-container">
             <Chat></Chat>
-        </>
+            {/* <span className="page-title">LAB</span> */}
+        </div>
     );
 };
 
