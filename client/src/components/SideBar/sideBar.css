@@ -14,7 +14,8 @@
     height: 60px;
     text-align: left;
     font-weight: 800;
-    font-size: 44px;
+    margin-left: 24px;
+    font-size: 35px;
     /* font-family: 'Margarine', cursive; */
     user-select: none;
     -webkit-user-drag: none;
