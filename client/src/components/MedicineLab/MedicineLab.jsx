@@ -1,10 +1,10 @@
-import Chat from "./Chat";
+import MedicineChat from "./MedicineChat";
 
 const MedicineLab = () => {
     return (
         <div className="body-container">
-            <Chat></Chat>
-            {/* <span className="page-title">LAB</span> */}
+            <MedicineChat></MedicineChat>
+            <span className="page-title">LAB</span>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext } from "react";
 
 import { MoodContext } from "../../contexts/moodContext";
-import { ChatContext } from "../../contexts/ChatContext";
+import { MedicineChatContext } from "../../contexts/MedicineChatContext";
 
 const emotions = [
     "Happy",
@@ -25,7 +25,7 @@ const EmotionWheel = () => {
         setSelectedEmotion,
         setSelectedEmotionIntensity,
         setTypedExtraSymptoms
-    } = useContext(ChatContext);
+    } = useContext(MedicineChatContext);
 
     const canvasRef = useRef(null);
 

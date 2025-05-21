@@ -3,13 +3,18 @@ import { DrawerContext } from "../../contexts/DrawerContext";
 
 import Intensity from "../IntensityIndicators/Intensity";
 import { MoodContext } from "../../contexts/moodContext";
+import { MedicineChatContext } from "../../contexts/MedicineChatContext";
+import { ForecastChatContext } from "../../contexts/ForecastChatContext";
 
 const DetailPanel = () => {
     const { selectedMedicine } = useContext(DrawerContext);
     const { setCurrentMood, setMoodIntensity } = useContext(MoodContext);
+    const { setMedicine} = useContext(ForecastChatContext)
 
     const takeMedicine = () => {
         setCurrentMood(selectedMedicine.mood);
+
+        setMedicine(selectedMedicine);
 
         if (selectedMedicine.intensity == 1) {
             setMoodIntensity("Mildly");

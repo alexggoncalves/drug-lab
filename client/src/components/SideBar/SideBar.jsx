@@ -42,7 +42,7 @@ const SideBar = ({ setCurrentPage, currentPage }) => {
                     ) : (
                         <img src={dayBlack} alt="" />
                     )}
-                    <span>Daycast</span>
+                    <span>Forecast</span>
                 </div>
             </div>
             <MoodDisplay></MoodDisplay>

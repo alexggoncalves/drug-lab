@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { MoodContext } from "./moodContext";
 
-export const ChatContext = createContext(null);
+export const MedicineChatContext = createContext(null);
 
 const initialBotMessage = [
     {
@@ -79,7 +79,7 @@ const loadingMessage = {
     text: "Please wait while we produce your medicine...",
 };
 
-const ChatProvider = ({ children }) => {
+const MedicineChatProvider = ({ children }) => {
     const {getMoodByName} = useContext(MoodContext)
 
     const neutralMood = getMoodByName("Neutral")
@@ -138,7 +138,7 @@ const ChatProvider = ({ children }) => {
     };
 
     return (
-        <ChatContext.Provider
+        <MedicineChatContext.Provider
             value={{
                 chatHistory,
                 setChatHistory,
@@ -150,8 +150,8 @@ const ChatProvider = ({ children }) => {
             }}
         >
             {children}
-        </ChatContext.Provider>
+        </MedicineChatContext.Provider>
     );
 };
 
-export default ChatProvider;
+export default MedicineChatProvider;

@@ -21,21 +21,20 @@
   position: relative;
 }
 
-/* .page-title {
+.page-title {
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
   left: 0;
-  transform: rotate(-90deg) translate(-100%, 0);
-  transform-origin: bottom right;
+  transform: rotate(-90deg) translateY(100%);
+  transform-origin: bottom left;
   font-weight: 700;
-  font-size: 3em;
+  font-size: 4em;
   white-space: nowrap;
-  margin-top: 18px;
+  margin: 0;
   user-select: none;
   -webkit-user-drag: none;
-  -moz-user-select: none;
   color: lightgray;
-} */
+}
 
 button {
   color: white;

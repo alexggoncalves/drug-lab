@@ -1,14 +1,14 @@
-import "./chat.css";
+import "../chat.css"
 
 import { useContext, useRef, useEffect } from "react";
 
-import ChatSection from "./ChatSection";
-import { ChatContext } from "../../contexts/ChatContext";
+import ForecastChatSection from "./ForecastChatSection";
+import { ForecastChatContext } from "../../contexts/ForecastChatContext";
 
 
 
-const Chat = () => {
-    const { chatHistory } = useContext(ChatContext);
+const ForecastChat = () => {
+    const { chatHistory } = useContext(ForecastChatContext);
     const chatRef = useRef(null);
 
     useEffect(() => {
@@ -20,10 +20,10 @@ const Chat = () => {
     return (
         <div className="chat-container" ref={chatRef}>
             {chatHistory.map((section, sectionIndex) => (
-                <ChatSection section={section} sectionIndex={sectionIndex} />
+                <ForecastChatSection key={`forecast-section-${sectionIndex}`}  section={section} sectionIndex={sectionIndex} />
             ))}
         </div>
     );
 };
-
-export default Chat;
+ 
+export default ForecastChat;

@@ -18,8 +18,8 @@ const Drawer = () => {
                 <span>DRAWER</span>
                 <div className="drawer-scroll-wrapper">
                     <div className="drawer-grid">
-                        {drawer.map((medicine) => {
-                           return <DrawerItem medicine={medicine}></DrawerItem>
+                        {drawer.map((medicine,medicineIndex) => {
+                           return <DrawerItem key={`medicine-${medicineIndex}`} medicine={medicine}></DrawerItem>
                         })}
                         
                     </div>

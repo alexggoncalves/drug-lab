@@ -5,10 +5,11 @@ import Drawer from "./components/Drawer/Drawer";
 
 import MoodProvider from "./contexts/moodContext";
 import DrawerProvider from "./contexts/DrawerContext";
-import ChatProvider from "./contexts/ChatContext";
+import MedicineChatProvider from "./contexts/MedicineChatContext";
+import ForecastChatProvider from "./contexts/ForecastChatContext";
 
 import MedicineLab from "./components/MedicineLab/MedicineLab";
-import DayCast from "./components/Daycast/Daycast";
+import Forecast from "./components/Forecast/Forecast";
 import { useState } from "react";
 
 function App() {
@@ -17,30 +18,33 @@ function App() {
     return (
         <MoodProvider>
             <DrawerProvider>
-                <ChatProvider>
-                    <SideBar
-                        setCurrentPage={setCurrentPage}
-                        currentPage={currentPage}
-                    />
-                    <div
-                        className="body-container"
-                        style={{
-                            display: currentPage === "lab" ? "flex" : "none",
-                        }}
-                    >
-                        <MedicineLab></MedicineLab>
-                    </div>
-                    <div
-                        className="body-container"
-                        style={{
-                            display:
-                                currentPage === "daycast" ? "flex" : "none",
-                        }}
-                    >
-                        <DayCast></DayCast>
-                    </div>
-                    <Drawer />
-                </ChatProvider>
+                <MedicineChatProvider>
+                    <ForecastChatProvider>
+                        <SideBar
+                            setCurrentPage={setCurrentPage}
+                            currentPage={currentPage}
+                        />
+                        <div
+                            className="body-container"
+                            style={{
+                                display:
+                                    currentPage === "lab" ? "flex" : "none",
+                            }}
+                        >
+                            <MedicineLab></MedicineLab>
+                        </div>
+                        <div
+                            className="body-container"
+                            style={{
+                                display:
+                                    currentPage === "daycast" ? "flex" : "none",
+                            }}
+                        >
+                            <Forecast></Forecast>
+                        </div>
+                        <Drawer/>
+                    </ForecastChatProvider>
+                </MedicineChatProvider>
             </DrawerProvider>
         </MoodProvider>
     );
