@@ -1,4 +1,4 @@
-import "./SideBar.css";
+import "./sideBar.css";
 
 import MoodDisplay from "./MoodDisplay";
 
