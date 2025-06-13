@@ -100,7 +100,7 @@ const MedicineChatProvider = ({ children }) => {
     };
 
     const generateMedicine = async () => {
-        const response = await fetch("http://localhost:3005/generate", {
+        const response = await fetch("https://feels-lab.onrender.com/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

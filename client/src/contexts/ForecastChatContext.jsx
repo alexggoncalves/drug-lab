@@ -97,7 +97,7 @@ const ForecastChatProvider = ({ children }) => {
     };
 
     const generateForecast = async () => {
-        const response = await fetch("http://localhost:3005/forecast", {
+        const response = await fetch("https://feels-lab.onrender.com/forecast", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
