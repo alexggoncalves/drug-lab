@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { MoodContext } from "./moodContext";
+import { MoodContext } from "./MoodContext";
 
 export const MedicineChatContext = createContext(null);
 

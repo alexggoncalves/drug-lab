@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 
-import { MoodContext } from "../../contexts/moodContext";
+import { MoodContext } from "../../contexts/MoodContext";
 import { MedicineChatContext } from "../../contexts/MedicineChatContext";
 
 const emotions = [

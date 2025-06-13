@@ -3,7 +3,7 @@ import "./App.css";
 import SideBar from "./components/SideBar/SideBar";
 import Drawer from "./components/Drawer/Drawer";
 
-import MoodProvider from "./contexts/moodContext";
+import MoodProvider from "./contexts/MoodContext";
 import DrawerProvider from "./contexts/DrawerContext";
 import MedicineChatProvider from "./contexts/MedicineChatContext";
 import ForecastChatProvider from "./contexts/ForecastChatContext";

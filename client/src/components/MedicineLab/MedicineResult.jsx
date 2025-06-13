@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { MoodContext } from "../../contexts/moodContext";
+import { MoodContext } from "../../contexts/MoodContext";
 import Intensity from "../IntensityIndicators/Intensity";
 import { DrawerContext } from "../../contexts/DrawerContext";
 

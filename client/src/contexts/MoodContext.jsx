@@ -22,7 +22,7 @@ const MoodProvider = ({children}) =>{
     }
 
     const getCurrentMood = ()=>{
-        const mood = moodIntensity + currentMood;
+        return currentMood;
     }
 
     return(

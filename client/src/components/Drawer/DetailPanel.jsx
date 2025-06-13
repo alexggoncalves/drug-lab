@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { DrawerContext } from "../../contexts/DrawerContext";
 
 import Intensity from "../IntensityIndicators/Intensity";
-import { MoodContext } from "../../contexts/moodContext";
+import { MoodContext } from "../../contexts/MoodContext";
 import { MedicineChatContext } from "../../contexts/MedicineChatContext";
 import { ForecastChatContext } from "../../contexts/ForecastChatContext";
 

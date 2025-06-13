@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MoodContext } from "../../contexts/moodContext";
+import { MoodContext } from "../../contexts/MoodContext";
 
 const MoodDisplay = () => {
     const {getMoodByName, currentMood, moodIntensity} = useContext(MoodContext);
