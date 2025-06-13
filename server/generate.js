@@ -60,7 +60,7 @@ const generateDescription = async (name, effects) => {
         },
         {
             role: "assistant",
-            content: `Euphorel is a fast-acting mood-enhancement supplement crafted to boost dopamine and serotonin activity. `,
+            content: `Euphorel is a fast-acting mood-enhancement supplement crafted to boost dopamine and serotonin activity.`,
         },
         {
             role: "user",
