@@ -1,4 +1,4 @@
-import "./Drawer.css";
+import "./drawer.css";
 
 import DetailPanel from "./DetailPanel";
 import DrawerItem from "./DrawerItem";

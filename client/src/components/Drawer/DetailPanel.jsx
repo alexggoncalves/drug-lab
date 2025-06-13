@@ -3,7 +3,6 @@ import { DrawerContext } from "../../contexts/DrawerContext";
 
 import Intensity from "../IntensityIndicators/Intensity";
 import { MoodContext } from "../../contexts/MoodContext";
-import { MedicineChatContext } from "../../contexts/MedicineChatContext";
 import { ForecastChatContext } from "../../contexts/ForecastChatContext";
 
 const DetailPanel = () => {
